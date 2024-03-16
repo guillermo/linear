@@ -1,0 +1,75 @@
+
+query fetchMe {
+  viewer {
+    id
+    name
+    email
+  }
+}
+
+
+
+query fetchTeams {
+  teams {
+    nodes {
+      id
+      name
+    }
+  }
+
+}
+
+
+
+query fetchIssue($id:String!) {
+  issue(id: $id) {
+    id
+    title
+    description
+  }
+}
+
+
+query fetchIssues($filter: IssueFilter, $first: Int, $after: String) {
+  issues(filter: $filter, first: $first, after: $after) {
+    nodes {
+      identifier
+      sortOrder
+      title
+      description
+      branchName
+      cycle {
+        id
+        name
+      }
+      labels {
+        nodes {
+          name
+          color
+        }
+      }
+      project {
+        name
+        id
+        color
+      }
+      assignee {
+        name
+        isMe
+      }
+      state {
+        name
+        color
+        position
+        type
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
+    }
+  }
+}
+
